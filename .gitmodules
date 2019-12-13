@@ -1,0 +1,6 @@
+[submodule "referto/gradle-examples"]
+	path = referto/gradle-examples
+	url = https://github.com/pkainulainen/gradle-examples.git
+[submodule "referto/gradle-multi-project-example"]
+	path = referto/gradle-multi-project-example
+	url = https://github.com/someok/gradle-multi-project-example.git
