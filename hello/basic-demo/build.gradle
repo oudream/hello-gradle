@@ -14,6 +14,8 @@ plugins {
     id 'application'
 
     id "base"
+
+    id 'war'
 }
 
 repositories {
@@ -43,4 +45,10 @@ task copy(type: Copy, group: "Custom", description: "Copies sources to the dest 
 task zip(type: Zip, group: "Archive", description: "Archives sources in a zip file") {
     from "src"
     setArchiveName "basic-demo-1.0.zip"
+}
+
+jar {
+    manifest {
+        attributes 'Main-Class': 'application1.App'
+    }
 }
