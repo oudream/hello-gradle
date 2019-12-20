@@ -1,0 +1,13 @@
+plugins {
+	id 'java'
+	id 'application'
+}
+
+mainClassName = 'greeter.Greeter'
+
+dependencies {
+	compile project(':greeting-library')
+
+	testCompile 'com.h2database:h2:1.0.79'
+	testCompile 'org.apache.directory.studio:org.apache.commons.io:2.4'
+}

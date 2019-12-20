@@ -1,0 +1,27 @@
+plugins {
+	id 'groovy'
+}
+
+
+allprojects {
+	repositories {
+		jcenter()
+	}
+}
+
+
+subprojects {
+	version = '1.0'
+}
+
+
+configure(subprojects.findAll { ['greeter', 'greeting-library', 'web-service'].contains it.name }) {
+
+	apply plugin: 'groovy'
+
+	dependencies {
+		testCompile 'org.spockframework:spock-core:1.2-RC2-groovy-2.5', {
+			exclude module: 'groovy-all'
+		}
+	}
+}
