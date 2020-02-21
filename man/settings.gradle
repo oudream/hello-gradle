@@ -1,0 +1,67 @@
+#!/usr/bin/env bash
+
+/**
+ * settings.gradle
+ * include 只包含目录下的 build.gradle，不包含 setting.gradle
+ * include 只包含目录下的 build.gradle，不包含 setting.gradle
+ * include 只包含目录下的 build.gradle，不包含 setting.gradle
+ */
+
+
+/**
+ * There are two method for include sub project
+ * one: include(':hello:hello-lang-condition')
+ * two: include "hello-lang-condition"; project(":hello-lang-condition").projectDir = file("/users/me/git/hello-lang-condition")
+ */
+
+
+/** url
+ * https://docs.gradle.org/current/dsl/org.gradle.api.Project.html
+ * https://docs.gradle.org/current/dsl/org.gradle.api.initialization.Settings.html
+ */
+
+
+/** include(projectPaths)
+将给定的项目添加到构建中。提供的列表中的每个路径均被视为要添加到构建中的项目的路径。
+请注意，这些路径不是文件路径，而是指定新项目在项目层次结构中的位置。因此，提供的路径必须使用'：'字符作为分隔符（而不是'/'）
+ */
+// hello 目录可以是空白
+include(':hello:hello-lang-condition')
+
+
+/**
+ * https://stackoverflow.com/questions/52540384/how-do-i-include-a-multi-module-project-in-gradle
+ * You can only define one and only one settings.gradle file.
+ *
+ * https://docs.gradle.org/current/userguide/userguide_single.html#sec:defining_a_multiproject_build
+ *
+ * To define a multi-project build, you need to create a settings file. The settings file lives in the root directory of the source tree, and specifies which projects to include in the build
+ *
+ * If you want to include a subproject within a subproject, use this syntax :
+ *
+ * include "a-subproject:an-inner-subproject"
+ * It can look like that :
+ *
+ * include "springint"
+ * project(":springint").projectDir = file("/users/me/git/spring-integration")
+ *
+ * rootProject.name = 'sprinttest'
+ *
+ * project(":springint").projectDir.eachDir { dir ->
+ *     if (dir.name.startsWith('spring-integration-')) {*         include "springint:${dir.name}"
+ *}
+ * }
+ */
+include "a-subproject:an-inner-subproject"
+
+include "springint"
+project(":springint").projectDir = file("/users/me/git/spring-integration")
+
+rootProject.name = 'sprinttest'
+
+project(":springint").projectDir.eachDir { dir ->
+    if (dir.name.startsWith('spring-integration-')) {
+        include "springint:${dir.name}"
+    }
+}
+
